@@ -58,6 +58,7 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             permissionLauncher.launch(
                 arrayOf(
