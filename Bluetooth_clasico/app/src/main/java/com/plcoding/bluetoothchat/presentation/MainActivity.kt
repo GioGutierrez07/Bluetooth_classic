@@ -11,6 +11,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.CircularProgressIndicator
@@ -25,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.plcoding.bluetoothchat.presentation.components.ChatScreen
 import com.plcoding.bluetoothchat.presentation.components.DeviceScreen
 import com.plcoding.bluetoothchat.ui.theme.BluetoothChatTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,7 +65,6 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             permissionLauncher.launch(
                 arrayOf(
@@ -87,6 +88,7 @@ class MainActivity : ComponentActivity() {
                         ).show()
                     }
                 }
+
                 LaunchedEffect(key1 = state.isConnected) {
                     if(state.isConnected) {
                         Toast.makeText(
@@ -96,6 +98,7 @@ class MainActivity : ComponentActivity() {
                         ).show()
                     }
                 }
+
                 Surface(
                     color = MaterialTheme.colors.background
                 ) {
@@ -109,6 +112,13 @@ class MainActivity : ComponentActivity() {
                                 CircularProgressIndicator()
                                 Text(text = "Connecting...")
                             }
+                        }
+                        state.isConnected -> {
+                            ChatScreen(
+                                state = state,
+                                onDisconnect = viewModel::disconnectFromDevice,
+                                onSendMessage = viewModel::sendMessage
+                            )
                         }
                         else -> {
                             DeviceScreen(
