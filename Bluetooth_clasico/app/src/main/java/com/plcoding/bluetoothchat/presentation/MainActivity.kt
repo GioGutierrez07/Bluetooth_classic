@@ -72,16 +72,13 @@ class MainActivity : ComponentActivity() {
             BluetoothChatTheme {
                 val viewModel = hiltViewModel<BluetoothViewModel>()
                 val state by viewModel.state.collectAsState()
-                Surface(
-                    color = MaterialTheme.colors.background
-                ) {
-                    DeviceScreen(
-                        state = state,
-                        onStartScan = viewModel::startScan,
-                        onStopScan = viewModel::stopScan
-                    )
+
+                LaunchedEffect(key1 = state.errorMessage) {
+                    state.errorMessage?.let { message ->
+                        Toast.makeText(
+                            applicationContext,
+                            message,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
-            }
-        }
-    }
-}
