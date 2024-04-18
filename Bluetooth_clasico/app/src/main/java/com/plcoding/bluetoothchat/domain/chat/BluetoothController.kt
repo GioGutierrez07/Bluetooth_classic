@@ -1,8 +1,8 @@
 package com.plcoding.bluetoothchat.domain.chat
 
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
 
 interface BluetoothController {
     val isConnected: StateFlow<Boolean>
