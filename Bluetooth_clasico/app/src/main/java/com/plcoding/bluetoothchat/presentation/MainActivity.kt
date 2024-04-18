@@ -82,3 +82,12 @@ class MainActivity : ComponentActivity() {
                         ).show()
                     }
                 }
+                LaunchedEffect(key1 = state.isConnected) {
+                    if(state.isConnected) {
+                        Toast.makeText(
+                            applicationContext,
+                            "You're connected!",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
