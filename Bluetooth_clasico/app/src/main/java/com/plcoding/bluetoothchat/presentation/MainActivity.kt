@@ -91,3 +91,17 @@ class MainActivity : ComponentActivity() {
                         ).show()
                     }
                 }
+                Surface(
+                    color = MaterialTheme.colors.background
+                ) {
+                    when {
+                        state.isConnecting -> {
+                            Column(
+                                modifier = Modifier.fillMaxSize(),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ) {
+                                CircularProgressIndicator()
+                                Text(text = "Connecting...")
+                            }
+                        }
