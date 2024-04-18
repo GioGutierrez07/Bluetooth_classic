@@ -105,3 +105,18 @@ class MainActivity : ComponentActivity() {
                                 Text(text = "Connecting...")
                             }
                         }
+                        else -> {
+                            DeviceScreen(
+                                state = state,
+                                onStartScan = viewModel::startScan,
+                                onStopScan = viewModel::stopScan,
+                                onDeviceClick = viewModel::connectToDevice,
+                                onStartServer = viewModel::waitForIncomingConnections
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
