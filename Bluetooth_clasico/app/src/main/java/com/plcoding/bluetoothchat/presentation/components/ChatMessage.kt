@@ -34,9 +34,6 @@ fun ChatMessage(
                 )
             )
             .background(
-                if (message.isFromLocalUser) Vanilla else OldRose
-            )
-            .background(
                 if (message.isFromLocalUser) OldRose else Vanilla
             )
             .padding(16.dp)
